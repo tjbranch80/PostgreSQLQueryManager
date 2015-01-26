@@ -48,25 +48,12 @@ namespace PostgreSQLManager
             return queryText;
         }
 
-        public Result SaveNewProfile(ConnectionData connectionData, string fileName, string savePath)
+        public Result SaveNewProfile(ConnectionData connectionData, string savePath)
         {
             Result result = new Result();
             ProfileManagement profileManager = new ProfileManagement();
 
-            XmlDocument xmlDoc = profileManager.CreateProfile(connectionData, fileName);
-
-            try
-            {
-                xmlDoc.Save(savePath);
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message = ex.Message;
-            }
-
-            result.Success = true;
-            result.Message = "Save Was Successful";
+            result = profileManager.CreateProfile(connectionData, savePath);
 
             return result;
         }

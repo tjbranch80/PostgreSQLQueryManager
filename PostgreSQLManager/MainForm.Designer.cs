@@ -51,7 +51,6 @@
             this.profileManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -222,8 +221,7 @@
             // 
             this.profileManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadProfileToolStripMenuItem,
-            this.saveProfileToolStripMenuItem,
-            this.deleteProfileToolStripMenuItem});
+            this.saveProfileToolStripMenuItem});
             this.profileManagementToolStripMenuItem.Name = "profileManagementToolStripMenuItem";
             this.profileManagementToolStripMenuItem.Size = new System.Drawing.Size(114, 20);
             this.profileManagementToolStripMenuItem.Text = "Profile Management";
@@ -233,6 +231,7 @@
             this.loadProfileToolStripMenuItem.Name = "loadProfileToolStripMenuItem";
             this.loadProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.loadProfileToolStripMenuItem.Text = "Load Profile";
+            this.loadProfileToolStripMenuItem.Click += new System.EventHandler(this.loadProfileToolStripMenuItem_Click);
             // 
             // saveProfileToolStripMenuItem
             // 
@@ -240,12 +239,6 @@
             this.saveProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveProfileToolStripMenuItem.Text = "Save Profile";
             this.saveProfileToolStripMenuItem.Click += new System.EventHandler(this.saveProfileToolStripMenuItem_Click);
-            // 
-            // deleteProfileToolStripMenuItem
-            // 
-            this.deleteProfileToolStripMenuItem.Name = "deleteProfileToolStripMenuItem";
-            this.deleteProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteProfileToolStripMenuItem.Text = "Delete Profile";
             // 
             // MainForm
             // 
@@ -306,7 +299,6 @@
         private System.Windows.Forms.ToolStripMenuItem profileManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProfileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteProfileToolStripMenuItem;
     }
 }
 

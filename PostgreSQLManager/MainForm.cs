@@ -132,6 +132,15 @@ namespace PostgreSQLManager
         {
             Result result = new Result();
 
+            result = SaveProfile();
+
+            MessageBox.Show(result.Message);
+        }
+
+        private Result SaveProfile()
+        {
+            Result result = new Result();
+
             saveFileDialog1.FileName = "Profile";
             saveFileDialog1.InitialDirectory = @"C:\";
             saveFileDialog1.Filter = "Postgres Profile File (*.XML)|*.XML";
@@ -148,10 +157,45 @@ namespace PostgreSQLManager
                 ConnectionData connectionData = new ConnectionData();
                 connectionData = GetConnectionInformation();
 
-                result = fileManager.SaveNewProfile(connectionData, fileName, filePath);
+                result = fileManager.SaveNewProfile(connectionData, filePath);
             }
 
-            MessageBox.Show(result.Message);
+            return result;
+        }
+
+        private void loadProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConnectionData connectionData = new ConnectionData();
+
+            connectionData = LoadProfile();
+
+            tbServerName.Text = connectionData.ServerName;
+            tbPort.Text = connectionData.PortNumber;
+            tbUserName.Text = connectionData.UserName;
+            tbPassword.Text = connectionData.Password;
+            tbDatabaseName.Text = connectionData.DatabaseName;
+        }
+
+        private ConnectionData LoadProfile()
+        {
+            ProfileManagement profileManager = new ProfileManagement();
+            ConnectionData connectionData = new ConnectionData();
+
+            Result dialogResult = new Result();
+
+            openFileDialog1.FileName = "";
+            openFileDialog1.InitialDirectory = @"C:\";
+            openFileDialog1.Filter = "Postgres Profile File (*.XML)|*.XML";
+            DialogResult openDialogResult = openFileDialog1.ShowDialog();
+
+            if (openDialogResult == DialogResult.OK)
+            {
+                string filePath = openFileDialog1.FileName;
+
+                connectionData = profileManager.GetSavedProfile(filePath);
+            }
+
+            return connectionData;
         }
     }
 }
