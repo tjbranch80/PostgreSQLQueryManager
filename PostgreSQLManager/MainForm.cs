@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Data.OleDb;
 using Npgsql;
-using System.IO;
 
 namespace PostgreSQLManager
 {
@@ -70,43 +63,10 @@ namespace PostgreSQLManager
         private void RunButton_Click(object sender, EventArgs e)
         {
             DataTable dataTable = new DataTable();
-            dataTable = ExecuteQuery();
-            dataGridView1.DataSource = dataTable;
-        }
-
-        private DataTable ExecuteQuery()
-        {
-            DataTable dataTable = new DataTable();
+            QueryProcessing queryProcessing = new QueryProcessing();
             ConnectionData connData = GetConnectionInformation();
-            DataAccess access = new DataAccess(connData);
-            string connectionString = access.CreateConnectionString();
-
-            try
-            {
-                using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    string query = QueryTextBox.Text;
-                    NpgsqlTransaction transaction = connection.BeginTransaction();
-
-                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    using (NpgsqlDataReader dr = command.ExecuteReader())
-                    {
-                        dataTable.Load(dr);
-                        transaction.Commit();
-                        connection.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return dataTable;
+            dataTable = queryProcessing.ExecuteQuery(connData, QueryTextBox.Text);
+            dataGridView1.DataSource = dataTable;
         }
 
         private ConnectionData GetConnectionInformation()
@@ -123,27 +83,20 @@ namespace PostgreSQLManager
 
         private string GetSavedQuery()
         {
+            FileManagement fileManager = new FileManagement();
+            Result dialogResult = new Result();
+
             string queryText = "";
             openFileDialog1.FileName = "";
             openFileDialog1.InitialDirectory = @"C:\";
             openFileDialog1.Filter = "Postgres SQL File (*.PSQL)|*.PSQL";
-            DialogResult result = openFileDialog1.ShowDialog();
+            DialogResult openDialogResult = openFileDialog1.ShowDialog();
 
-            if (result == DialogResult.OK)
+            if (openDialogResult == DialogResult.OK)
             {
                 string file = openFileDialog1.FileName;
 
-                if (!string.IsNullOrWhiteSpace(file))
-                {
-                    try
-                    {
-                        queryText = File.ReadAllText(file);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                queryText = fileManager.OpenQueryFile(file);
             }
 
             return queryText;
@@ -151,28 +104,46 @@ namespace PostgreSQLManager
 
         private void SaveQuery(string queryText)
         {
+            FileManagement fileManager = new FileManagement();
+            Result result = new Result();
+
             saveFileDialog1.FileName = "Query";
             saveFileDialog1.InitialDirectory = @"C:\";
-            saveFileDialog1.Filter = "Postgres SQL File (*.SQL)|*.SQL";
+            saveFileDialog1.Filter = "Postgres SQL File (*.PSQL)|*.PSQL";
 
-            DialogResult result = saveFileDialog1.ShowDialog();
+            DialogResult saveDialogResult = saveFileDialog1.ShowDialog();
 
-            if (result == DialogResult.OK)
+            if (saveDialogResult == DialogResult.OK)
             {
                 string file = saveFileDialog1.FileName;
 
-                if (!string.IsNullOrWhiteSpace(file))
+                if (!string.IsNullOrWhiteSpace(queryText))
                 {
-                    try
-                    {
-                        File.WriteAllText(file, queryText);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    result = fileManager.SaveQueryFile(file, queryText);
                 }
                 
+            }
+
+            MessageBox.Show(result.Message);
+        }
+
+        private void saveProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = "Profile";
+            saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Filter = "Postgres Profile File (*.Profile)|*.Profile";
+
+            DialogResult saveDialogResult = saveFileDialog1.ShowDialog();
+
+            if (saveDialogResult == DialogResult.OK)
+            {
+                string file = saveFileDialog1.FileName;
+
+                if (!string.IsNullOrWhiteSpace(queryText))
+                {
+                    result = fileManager.SaveQueryFile(file, queryText);
+                }
+
             }
         }
     }

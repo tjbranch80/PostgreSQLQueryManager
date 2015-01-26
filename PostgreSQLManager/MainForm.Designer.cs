@@ -47,12 +47,18 @@
             this.btSaveQuery = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.profileManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ClearAllButton
             // 
-            this.ClearAllButton.Location = new System.Drawing.Point(12, 281);
+            this.ClearAllButton.Location = new System.Drawing.Point(411, 89);
             this.ClearAllButton.Name = "ClearAllButton";
             this.ClearAllButton.Size = new System.Drawing.Size(75, 23);
             this.ClearAllButton.TabIndex = 0;
@@ -62,7 +68,7 @@
             // 
             // RunButton
             // 
-            this.RunButton.Location = new System.Drawing.Point(662, 281);
+            this.RunButton.Location = new System.Drawing.Point(16, 334);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(75, 23);
             this.RunButton.TabIndex = 1;
@@ -72,7 +78,7 @@
             // 
             // QueryTextBox
             // 
-            this.QueryTextBox.Location = new System.Drawing.Point(12, 76);
+            this.QueryTextBox.Location = new System.Drawing.Point(12, 138);
             this.QueryTextBox.Multiline = true;
             this.QueryTextBox.Name = "QueryTextBox";
             this.QueryTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -82,15 +88,15 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 310);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 382);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(725, 442);
+            this.dataGridView1.Size = new System.Drawing.Size(725, 409);
             this.dataGridView1.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(13, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 4;
@@ -98,7 +104,7 @@
             // 
             // tbServerName
             // 
-            this.tbServerName.Location = new System.Drawing.Point(57, 6);
+            this.tbServerName.Location = new System.Drawing.Point(57, 39);
             this.tbServerName.Name = "tbServerName";
             this.tbServerName.Size = new System.Drawing.Size(92, 20);
             this.tbServerName.TabIndex = 5;
@@ -106,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(156, 12);
+            this.label2.Location = new System.Drawing.Point(155, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 6;
@@ -114,7 +120,7 @@
             // 
             // tbPort
             // 
-            this.tbPort.Location = new System.Drawing.Point(189, 5);
+            this.tbPort.Location = new System.Drawing.Point(189, 39);
             this.tbPort.Name = "tbPort";
             this.tbPort.Size = new System.Drawing.Size(61, 20);
             this.tbPort.TabIndex = 7;
@@ -122,7 +128,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(256, 11);
+            this.label3.Location = new System.Drawing.Point(256, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 8;
@@ -130,7 +136,7 @@
             // 
             // tbUserName
             // 
-            this.tbUserName.Location = new System.Drawing.Point(305, 4);
+            this.tbUserName.Location = new System.Drawing.Point(305, 35);
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(122, 20);
             this.tbUserName.TabIndex = 9;
@@ -138,7 +144,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(433, 11);
+            this.label4.Location = new System.Drawing.Point(433, 38);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 10;
@@ -146,7 +152,7 @@
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(492, 4);
+            this.tbPassword.Location = new System.Drawing.Point(492, 31);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
@@ -155,7 +161,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(599, 10);
+            this.label5.Location = new System.Drawing.Point(600, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 12;
@@ -163,14 +169,14 @@
             // 
             // tbDatabaseName
             // 
-            this.tbDatabaseName.Location = new System.Drawing.Point(659, 3);
+            this.tbDatabaseName.Location = new System.Drawing.Point(659, 31);
             this.tbDatabaseName.Name = "tbDatabaseName";
             this.tbDatabaseName.Size = new System.Drawing.Size(78, 20);
             this.tbDatabaseName.TabIndex = 13;
             // 
             // btConnectionTest
             // 
-            this.btConnectionTest.Location = new System.Drawing.Point(16, 44);
+            this.btConnectionTest.Location = new System.Drawing.Point(16, 89);
             this.btConnectionTest.Name = "btConnectionTest";
             this.btConnectionTest.Size = new System.Drawing.Size(108, 23);
             this.btConnectionTest.TabIndex = 14;
@@ -180,7 +186,7 @@
             // 
             // btLoadQuery
             // 
-            this.btLoadQuery.Location = new System.Drawing.Point(189, 44);
+            this.btLoadQuery.Location = new System.Drawing.Point(189, 89);
             this.btLoadQuery.Name = "btLoadQuery";
             this.btLoadQuery.Size = new System.Drawing.Size(75, 23);
             this.btLoadQuery.TabIndex = 15;
@@ -190,7 +196,7 @@
             // 
             // btSaveQuery
             // 
-            this.btSaveQuery.Location = new System.Drawing.Point(305, 44);
+            this.btSaveQuery.Location = new System.Drawing.Point(305, 89);
             this.btSaveQuery.Name = "btSaveQuery";
             this.btSaveQuery.Size = new System.Drawing.Size(75, 23);
             this.btSaveQuery.TabIndex = 16;
@@ -202,11 +208,50 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.profileManagementToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(749, 24);
+            this.menuStrip1.TabIndex = 17;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // profileManagementToolStripMenuItem
+            // 
+            this.profileManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadProfileToolStripMenuItem,
+            this.saveProfileToolStripMenuItem,
+            this.deleteProfileToolStripMenuItem});
+            this.profileManagementToolStripMenuItem.Name = "profileManagementToolStripMenuItem";
+            this.profileManagementToolStripMenuItem.Size = new System.Drawing.Size(114, 20);
+            this.profileManagementToolStripMenuItem.Text = "Profile Management";
+            // 
+            // loadProfileToolStripMenuItem
+            // 
+            this.loadProfileToolStripMenuItem.Name = "loadProfileToolStripMenuItem";
+            this.loadProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadProfileToolStripMenuItem.Text = "Load Profile";
+            // 
+            // saveProfileToolStripMenuItem
+            // 
+            this.saveProfileToolStripMenuItem.Name = "saveProfileToolStripMenuItem";
+            this.saveProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveProfileToolStripMenuItem.Text = "Save Profile";
+            this.saveProfileToolStripMenuItem.Click += new System.EventHandler(this.saveProfileToolStripMenuItem_Click);
+            // 
+            // deleteProfileToolStripMenuItem
+            // 
+            this.deleteProfileToolStripMenuItem.Name = "deleteProfileToolStripMenuItem";
+            this.deleteProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteProfileToolStripMenuItem.Text = "Delete Profile";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 764);
+            this.ClientSize = new System.Drawing.Size(749, 803);
             this.Controls.Add(this.btSaveQuery);
             this.Controls.Add(this.btLoadQuery);
             this.Controls.Add(this.btConnectionTest);
@@ -224,9 +269,13 @@
             this.Controls.Add(this.QueryTextBox);
             this.Controls.Add(this.RunButton);
             this.Controls.Add(this.ClearAllButton);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "PostreSQL Query Manager";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,6 +302,11 @@
         private System.Windows.Forms.Button btSaveQuery;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem profileManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadProfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveProfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteProfileToolStripMenuItem;
     }
 }
 
