@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 
 namespace PostgreSQLManager
 {
@@ -47,9 +48,27 @@ namespace PostgreSQLManager
             return queryText;
         }
 
-        public Result SaveNewProfile()
+        public Result SaveNewProfile(ConnectionData connectionData, string fileName, string savePath)
         {
             Result result = new Result();
+            ProfileManagement profileManager = new ProfileManagement();
+
+            XmlDocument xmlDoc = profileManager.CreateProfile(connectionData, fileName);
+
+            try
+            {
+                xmlDoc.Save(savePath);
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            result.Success = true;
+            result.Message = "Save Was Successful";
+
+            return result;
         }
     }
 }

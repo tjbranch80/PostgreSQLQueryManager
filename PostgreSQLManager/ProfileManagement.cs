@@ -8,27 +8,39 @@ namespace PostgreSQLManager
 {
     public class ProfileManagement
     {
-        public Result SaveProfile(ConnectionData connectionData)
+        public XmlDocument CreateProfile(ConnectionData connectionData, string fileName)
         {
-            Result result = new Result();
             FileManagement fileManagement = new FileManagement();
-        }
+            XmlDocument xmlDoc = new XmlDocument();
 
-        public void CreateProfileNode(ConnectionData connectionData, XmlTextWriter writer)
-        {
-            writer.WriteStartElement("Profile");
+            XmlNode rootNode = xmlDoc.CreateElement(fileName);
+            xmlDoc.AppendChild(rootNode);
 
-            writer.WriteStartElement("ServerName");
-            writer.WriteString(connectionData.ServerName);
-            writer.WriteEndElement();
+            XmlElement profileNode = xmlDoc.CreateElement("Profile");
 
-            writer.WriteStartElement("Port");
-            writer.WriteStartElement(connectionData.PortNumber);
-            writer.WriteEndElement();
+            XmlElement serverName = xmlDoc.CreateElement("ServerName");
+            serverName.InnerText = connectionData.ServerName;
+            profileNode.AppendChild(serverName);
 
-            writer.WriteStartElement("UserName");
-            writer.WriteStartElement(connectionData.UserName);
-            writer.WriteEndElement();
+            XmlElement port = xmlDoc.CreateElement("PortNumber");
+            port.InnerText = connectionData.PortNumber;
+            profileNode.AppendChild(port);
+
+            XmlElement user = xmlDoc.CreateElement("UserName");
+            user.InnerText = connectionData.UserName;
+            profileNode.AppendChild(user);
+
+            XmlElement password = xmlDoc.CreateElement("Password");
+            password.InnerText = connectionData.Password;
+            profileNode.AppendChild(password);
+
+            XmlElement database = xmlDoc.CreateElement("DatabaseName");
+            database.InnerText = connectionData.DatabaseName;
+            profileNode.AppendChild(database);
+
+            rootNode.AppendChild(profileNode);
+
+            return xmlDoc;
         }
     }
 }

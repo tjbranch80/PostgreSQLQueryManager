@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using Npgsql;
+using System.IO;
 
 namespace PostgreSQLManager
 {
@@ -129,22 +130,28 @@ namespace PostgreSQLManager
 
         private void saveProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Result result = new Result();
+
             saveFileDialog1.FileName = "Profile";
             saveFileDialog1.InitialDirectory = @"C:\";
-            saveFileDialog1.Filter = "Postgres Profile File (*.Profile)|*.Profile";
+            saveFileDialog1.Filter = "Postgres Profile File (*.XML)|*.XML";
 
             DialogResult saveDialogResult = saveFileDialog1.ShowDialog();
 
             if (saveDialogResult == DialogResult.OK)
             {
-                string file = saveFileDialog1.FileName;
+                string filePath = saveFileDialog1.FileName;
 
-                if (!string.IsNullOrWhiteSpace(queryText))
-                {
-                    result = fileManager.SaveQueryFile(file, queryText);
-                }
+                string fileName = Path.GetFileNameWithoutExtension(filePath);
 
+                FileManagement fileManager = new FileManagement();
+                ConnectionData connectionData = new ConnectionData();
+                connectionData = GetConnectionInformation();
+
+                result = fileManager.SaveNewProfile(connectionData, fileName, filePath);
             }
+
+            MessageBox.Show(result.Message);
         }
     }
 }
