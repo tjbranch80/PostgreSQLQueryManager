@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using Npgsql;
 using System.IO;
+using System.Collections.Generic;
 
 namespace PostgreSQLManager
 {
@@ -12,6 +13,7 @@ namespace PostgreSQLManager
         {
             InitializeComponent();
             CenterToScreen();
+            DisplayQueryTypes();
         }
 
         private void btConnectionTest_Click(object sender, EventArgs e)
@@ -63,10 +65,20 @@ namespace PostgreSQLManager
 
         private void RunButton_Click(object sender, EventArgs e)
         {
+            int typeID = GetQueryType();
             DataTable dataTable = new DataTable();
             QueryProcessing queryProcessing = new QueryProcessing();
             ConnectionData connData = GetConnectionInformation();
-            dataTable = queryProcessing.ExecuteQuery(connData, QueryTextBox.Text);
+
+            if (typeID == 1)
+            {
+                dataTable = queryProcessing.ExecuteQuery(connData, QueryTextBox.Text);
+            }
+            else
+            {
+                dataTable = queryProcessing.ExecuteStoredProcedure(connData, QueryTextBox.Text);
+            }
+
             dataGridView1.DataSource = dataTable;
         }
 
@@ -196,6 +208,23 @@ namespace PostgreSQLManager
             }
 
             return connectionData;
+        }
+
+        private void DisplayQueryTypes()
+        {
+            Dictionary<string, int> queryTypes = new Dictionary<string, int>();
+            queryTypes.Add("Query", 1);
+            queryTypes.Add("Stored Procedure", 2);
+
+            cbQueryType.DataSource = new BindingSource(queryTypes, null);
+            cbQueryType.DisplayMember = "Key";
+            cbQueryType.ValueMember = "Value";
+        }
+
+        private int GetQueryType()
+        {
+            int typeID = (int)cbQueryType.SelectedValue;
+            return typeID;
         }
     }
 }

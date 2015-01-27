@@ -51,13 +51,14 @@
             this.profileManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbQueryType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ClearAllButton
             // 
-            this.ClearAllButton.Location = new System.Drawing.Point(411, 89);
+            this.ClearAllButton.Location = new System.Drawing.Point(517, 104);
             this.ClearAllButton.Name = "ClearAllButton";
             this.ClearAllButton.Size = new System.Drawing.Size(75, 23);
             this.ClearAllButton.TabIndex = 0;
@@ -67,7 +68,7 @@
             // 
             // RunButton
             // 
-            this.RunButton.Location = new System.Drawing.Point(16, 334);
+            this.RunButton.Location = new System.Drawing.Point(352, 104);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(75, 23);
             this.RunButton.TabIndex = 1;
@@ -87,9 +88,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 382);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 336);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(725, 409);
+            this.dataGridView1.Size = new System.Drawing.Size(725, 455);
             this.dataGridView1.TabIndex = 3;
             // 
             // label1
@@ -175,7 +176,7 @@
             // 
             // btConnectionTest
             // 
-            this.btConnectionTest.Location = new System.Drawing.Point(16, 89);
+            this.btConnectionTest.Location = new System.Drawing.Point(16, 65);
             this.btConnectionTest.Name = "btConnectionTest";
             this.btConnectionTest.Size = new System.Drawing.Size(108, 23);
             this.btConnectionTest.TabIndex = 14;
@@ -185,7 +186,7 @@
             // 
             // btLoadQuery
             // 
-            this.btLoadQuery.Location = new System.Drawing.Point(189, 89);
+            this.btLoadQuery.Location = new System.Drawing.Point(175, 104);
             this.btLoadQuery.Name = "btLoadQuery";
             this.btLoadQuery.Size = new System.Drawing.Size(75, 23);
             this.btLoadQuery.TabIndex = 15;
@@ -195,7 +196,7 @@
             // 
             // btSaveQuery
             // 
-            this.btSaveQuery.Location = new System.Drawing.Point(305, 89);
+            this.btSaveQuery.Location = new System.Drawing.Point(259, 104);
             this.btSaveQuery.Name = "btSaveQuery";
             this.btSaveQuery.Size = new System.Drawing.Size(75, 23);
             this.btSaveQuery.TabIndex = 16;
@@ -229,22 +230,31 @@
             // loadProfileToolStripMenuItem
             // 
             this.loadProfileToolStripMenuItem.Name = "loadProfileToolStripMenuItem";
-            this.loadProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadProfileToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.loadProfileToolStripMenuItem.Text = "Load Profile";
             this.loadProfileToolStripMenuItem.Click += new System.EventHandler(this.loadProfileToolStripMenuItem_Click);
             // 
             // saveProfileToolStripMenuItem
             // 
             this.saveProfileToolStripMenuItem.Name = "saveProfileToolStripMenuItem";
-            this.saveProfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveProfileToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.saveProfileToolStripMenuItem.Text = "Save Profile";
             this.saveProfileToolStripMenuItem.Click += new System.EventHandler(this.saveProfileToolStripMenuItem_Click);
+            // 
+            // cbQueryType
+            // 
+            this.cbQueryType.FormattingEnabled = true;
+            this.cbQueryType.Location = new System.Drawing.Point(16, 106);
+            this.cbQueryType.Name = "cbQueryType";
+            this.cbQueryType.Size = new System.Drawing.Size(133, 21);
+            this.cbQueryType.TabIndex = 18;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 803);
+            this.Controls.Add(this.cbQueryType);
             this.Controls.Add(this.btSaveQuery);
             this.Controls.Add(this.btLoadQuery);
             this.Controls.Add(this.btConnectionTest);
@@ -299,6 +309,7 @@
         private System.Windows.Forms.ToolStripMenuItem profileManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProfileToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cbQueryType;
     }
 }
 
